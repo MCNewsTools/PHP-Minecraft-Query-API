@@ -46,6 +46,16 @@ if (($Info = $Query->GetInfo()) !== false) {
     } else {
         $platform = $Info['GameName'];
     }
+    
+    $playerList = array( );
+	if ( !empty( $InfoPing['players']['sample'] ) ) {
+		$playerList = $InfoPing['players']['sample'];
+	}
+	
+	$pluginList = array( );
+	if ( !empty( $Info['Plugins'] ) ) {
+		$pluginList = $Info['Plugins'];
+	}
 
     $json = array(
         'status' => 'Online',
@@ -64,13 +74,13 @@ if (($Info = $Query->GetInfo()) !== false) {
         'players' => array(
             'max' => $Info['MaxPlayers'],
             'online' => $Info['Players'],
-            'list' => $InfoPing['players']['sample']
+            'list' => $playerList
         ),
         'version' => array(
             'version' => $Info['Version'],
             'software' => $Info['Software']
         ),
-        'Plugins' => $Info['Plugins'],
+        'Plugins' => $pluginList,
         'queryinfo' => array(
             'agreement' => 'Query',
             'processed' => $Timer
