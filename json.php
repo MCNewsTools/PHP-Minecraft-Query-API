@@ -63,12 +63,14 @@ if (($Info = $Query->GetInfo()) !== false) {
         ),
         'players' => array(
             'max' => $Info['MaxPlayers'],
-            'online' => $Info['Players']
+            'online' => $Info['Players'],
+            'list' => $InfoPing['players']['sample']
         ),
         'version' => array(
             'version' => $Info['Version'],
             'software' => $Info['Software']
         ),
+        'Plugins' => $Info['Plugins'],
         'queryinfo' => array(
             'agreement' => 'Query',
             'processed' => $Timer
