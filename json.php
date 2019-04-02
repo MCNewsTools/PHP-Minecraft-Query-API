@@ -46,16 +46,16 @@ if (($Info = $Query->GetInfo()) !== false) {
     } else {
         $platform = $Info['GameName'];
     }
-    
-    $playerList = array( );
-	if ( !empty( $InfoPing['players']['sample'] ) ) {
-		$playerList = $InfoPing['players']['sample'];
-	}
-	
-	$pluginList = array( );
-	if ( !empty( $Info['Plugins'] ) ) {
-		$pluginList = $Info['Plugins'];
-	}
+
+    $playerList = array();
+    if (!empty($Query->GetPlayers())) {
+        $playerList = $Query->GetPlayers();
+    }
+
+    $pluginList = array();
+    if (!empty($Info['Plugins'])) {
+        $pluginList = $Info['Plugins'];
+    }
 
     $json = array(
         'status' => 'Online',
@@ -86,7 +86,7 @@ if (($Info = $Query->GetInfo()) !== false) {
             'processed' => $Timer
         )
     );
-} else if ($InfoPing !== false){
+} else if ($InfoPing !== false) {
     $version = explode(" ", $InfoPing['version']['name'], 2);
     $hostNameHtml = str_replace("§k", "", $InfoPing['description']);
     $hostNameHtml = str_replace("§l", "", $hostNameHtml);
